@@ -51,5 +51,64 @@ namespace MVC_sucuri
                 Console.WriteLine(x.InfoSucuri());
             }
         }
+
+        //functie ce adauga intr o lista toate obiectele cu aceasi cantitate
+        public List<Sucuri> FilterSucuriDupaCantiate(int cantitate)
+        {
+            List<Sucuri> sucursiCuCantitateData = new List<Sucuri>();
+
+            foreach (Sucuri x in SucuriList)
+            {
+                if (x.cantitate == cantitate)
+                {
+                    sucursiCuCantitateData.Add(x);
+                }
+            }
+
+            return sucursiCuCantitateData;
+        }
+
+        //functie ce adauga intr o lista toate obiecte sub pretul de 11 lei
+        public List<Sucuri> FilterSucuriSubPret(int pret)
+        {
+            List<Sucuri> sucursiSubPretMaxim = new List<Sucuri>();
+
+            foreach (Sucuri x in SucuriList)
+            {
+                if (x.pret < pret)
+                {
+                    sucursiSubPretMaxim.Add(x);
+                }
+            }
+
+            return sucursiSubPretMaxim;
+        }
+
+
+
+        //CRUD
+        public bool EditJuiceQuantity(int cantitate, string juiceBrand)
+        {
+            foreach (Sucuri x in SucuriList)
+            {
+                if (x.brand == juiceBrand)
+                {
+                    x.cantitate = cantitate;
+                    return true;
+                }
+            }
+            return false; 
+        }
+
+        public bool EditJuiceName(string nume)
+        {
+            foreach(Sucuri x in SucuriList)
+            {
+                if(Sucuri == nume)
+                {
+
+                }
+            }
+        }
     }
 }
