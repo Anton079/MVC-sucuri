@@ -7,19 +7,16 @@ internal class Program
         SucuriService service = new SucuriService();
 
         service.LoadData();
+        View view = new View();
+
+        Sucuri sucNou = new Sucuri();
+        sucNou.brand = "Sprite";
+        sucNou.cantitate = 1;
+        sucNou.pret = 8;
+
 
         service.AfisareSucuri();
 
-        List<Sucuri> Sucuris = service.FilterSucuriDupaCantiate(2);
-        foreach (Sucuri x in Sucuris)
-        {
-            Console.WriteLine(x.InfoSucuri());
-        }
-
-        List<Sucuri> sucuris = service.FilterSucuriDupaCantiate(11);
-        foreach (Sucuri x in sucuris)
-        {
-            Console.WriteLine(x.InfoSucuri());
-        }
+        
     }
 }

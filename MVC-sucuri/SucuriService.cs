@@ -44,13 +44,6 @@ namespace MVC_sucuri
             this.SucuriList.Add(Produs5);
         }
 
-        public void AfisareSucuri()
-        {
-            foreach(Sucuri x in SucuriList)
-            {
-                Console.WriteLine(x.InfoSucuri());
-            }
-        }
 
         //functie ce adauga intr o lista toate obiectele cu aceasi cantitate
         public List<Sucuri> FilterSucuriDupaCantiate(int cantitate)
@@ -87,28 +80,48 @@ namespace MVC_sucuri
 
 
         //CRUD
-        public bool EditJuiceQuantity(int cantitate, string juiceBrand)
-        {
-            foreach (Sucuri x in SucuriList)
-            {
-                if (x.brand == juiceBrand)
-                {
-                    x.cantitate = cantitate;
-                    return true;
-                }
-            }
-            return false; 
-        }
-
-        public bool EditJuiceName(string nume)
+        public void AfisareSucuri()
         {
             foreach(Sucuri x in SucuriList)
             {
-                if(Sucuri == nume)
-                {
-
-                }
+                Console.WriteLine(x.InfoSucuri());
             }
         }
+
+        public int FindSucuriByBrand(string brand)
+        {
+            for (int i = 0; i < SucuriList.Count; i++)
+            {
+                if (SucuriList[i].brand == brand)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        public bool AddSucuriInList(Sucuri ProdusNou)
+        {
+            if (FindSucuriByBrand(ProdusNou.brand) == -1)
+            {
+                this.SucuriList.Add(ProdusNou);
+                return true;
+            }
+            return false;
+        }
+
+        public bool RemoveSucuriByBrand(string ProdusCautat)
+        {
+            int ProdusulCautatIndex = FindSucuriByBrand(ProdusCautat);
+            if (ProdusulCautatIndex != -1)
+            {
+                SucuriList.RemoveAt(ProdusulCautatIndex);
+                return true;
+            }
+            return false;
+        }
+
+        //View
+
     }
 }
