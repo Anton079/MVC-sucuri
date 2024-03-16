@@ -88,7 +88,7 @@ namespace MVC_sucuri
             }
         }
 
-        public int FindSucuriByBrand(string brand)
+        public int FindSucByBrand(string brand)
         {
             for (int i = 0; i < SucuriList.Count; i++)
             {
@@ -102,7 +102,7 @@ namespace MVC_sucuri
 
         public bool AddSucuriInList(Sucuri ProdusNou)
         {
-            if (FindSucuriByBrand(ProdusNou.brand) == -1)
+            if (FindSucByBrand(ProdusNou.brand) == -1)
             {
                 this.SucuriList.Add(ProdusNou);
                 return true;
@@ -112,7 +112,7 @@ namespace MVC_sucuri
 
         public bool RemoveSucuriByBrand(string ProdusCautat)
         {
-            int ProdusulCautatIndex = FindSucuriByBrand(ProdusCautat);
+            int ProdusulCautatIndex = FindSucByBrand(ProdusCautat);
             if (ProdusulCautatIndex != -1)
             {
                 SucuriList.RemoveAt(ProdusulCautatIndex);
@@ -122,6 +122,67 @@ namespace MVC_sucuri
         }
 
         //View
+        public string AfisareaSucurilorByBrand(string alegere)
+        {
+            foreach(Sucuri x in SucuriList)
+            {
+                if(x.brand == alegere)
+                {
+                    return x.InfoSucuri();
+                }
+            }
+            return null;
+        }
 
+
+        //public void AfisareSucuriByCantitate()
+        //{
+        //    for (int i = 0; i < SucuriList.Count; i++)
+        //    {
+        //        if (SucuriList[i].brand == )
+        //        {
+        //            Console.WriteLine(SucuriList[i] == );
+        //        }
+        //    }
+        //}
+
+        public bool EditSucuriBrand(string alegere, string newbrand)
+        {
+            foreach(Sucuri x in SucuriList)
+            {
+                if (x.brand == alegere)
+                {
+                    x.brand = newbrand;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool EditSucuriPret(string alegere, int newPrice)
+        {
+            foreach (Sucuri x in SucuriList)
+            {
+                if (x.brand == alegere)
+                {
+                    x.pret = newPrice;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool EditSucuriCantitate(string alegere, int newCantitate)
+        {
+            foreach (Sucuri x in SucuriList)
+            {
+                if (x.brand == alegere)
+                {
+                    x.cantitate = newCantitate;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
