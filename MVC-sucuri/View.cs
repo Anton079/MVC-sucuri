@@ -10,7 +10,12 @@ namespace MVC_sucuri
     public class View
     {
 
-        SucuriService sucuriService = new SucuriService();
+        private SucuriService _sucuriService;
+
+        public View()
+        {
+            _sucuriService = new SucuriService();
+        }
 
         public void Meniu()
         {
@@ -22,12 +27,12 @@ namespace MVC_sucuri
             Console.WriteLine("Apasati tasta 6 pentru a edita pretul unui suc");
             Console.WriteLine("Apasati tasta 7 pentru a edita cantitatea unui suc");
         }
-
+        
         public void play()
         {
             bool running = true;
 
-            sucuriService.LoadData();
+            _sucuriService.LoadData();
             while (running)
             {
                 Meniu();
@@ -36,7 +41,7 @@ namespace MVC_sucuri
                 switch(alegere)
                 {
                     case "1":
-                        sucuriService.AfisareSucuri();
+                        _sucuriService.AfisareSucuri();
                         break;
 
                     //case "2":
@@ -122,7 +127,7 @@ namespace MVC_sucuri
             Console.WriteLine("Cu ce brand vreti sa-l editati");
             string newSuc = Console.ReadLine();
 
-            if (sucuriService.EditSucuriBrand(alegere, newSuc))
+            if (_sucuriService.EditSucuriBrand(alegere, newSuc))
             {
                 Console.WriteLine("Brandul de suc a fost modificat");
             }
@@ -140,7 +145,7 @@ namespace MVC_sucuri
             Console.WriteLine("Cu ce pret vreti sa-l editati?");
             int newPrice = Int32.Parse(Console.ReadLine());
 
-            if (sucuriService.EditSucuriPret(alegere, newPrice))
+            if (_sucuriService.EditSucuriPret(alegere, newPrice))
             {
                 Console.WriteLine("Brandul de suc a fost modificat");
             }
@@ -158,7 +163,7 @@ namespace MVC_sucuri
             Console.WriteLine("Cu ce inaltime doriti sa modificati animalul");
             int newCantitate = Int32.Parse(Console.ReadLine());
 
-            if (sucuriService.EditSucuriCantitate(alegere, newCantitate))
+            if (_sucuriService.EditSucuriCantitate(alegere, newCantitate))
             {
                 Console.WriteLine("Animalul a fost editat cu succes");
             }

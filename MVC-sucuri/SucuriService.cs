@@ -8,7 +8,13 @@ namespace MVC_sucuri
 {
     public class SucuriService
     {
-        public List <Sucuri> SucuriList = new List<Sucuri>();
+        public List<Sucuri> _SucuriList;
+
+        public SucuriService()
+        {
+            _SucuriList = new List<Sucuri>();
+            this.LoadData();
+        }
 
         public void LoadData()
         {
